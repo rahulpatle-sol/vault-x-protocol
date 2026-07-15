@@ -1,4 +1,9 @@
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { galleryImages } from 'assets/remoteImages';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FEATURES = [
   { icon: '01', title: 'Asset-grade onboarding', desc: 'Property value, occupancy, expected yield, and allocation context are shown clearly before a user enters the presale.' },
@@ -8,10 +13,48 @@ const FEATURES = [
 ];
 
 export default function FeaturesSection() {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(headerRef.current?.children || [],
+        { y: 50, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      gsap.fromTo(cardsRef.current.filter(Boolean),
+        { y: 60, opacity: 0, scale: 0.95 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 0.7, stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="vx-section">
+    <section ref={sectionRef} className="vx-section">
       <div className="vx-container">
-        <div style={{ display: 'grid', gridTemplateColumns: '.85fr 1.15fr', gap: 34, alignItems: 'center', marginBottom: 34 }}>
+        <div ref={headerRef} style={{
+          display: 'grid', gridTemplateColumns: '.85fr 1.15fr',
+          gap: 34, alignItems: 'center', marginBottom: 34,
+        }}>
           <div>
             <div className="vx-eyebrow">Protocol experience</div>
             <h2 className="vx-title" style={{ fontSize: 'clamp(34px,4vw,58px)' }}>A cleaner frontend for an RWA capital market.</h2>
@@ -21,7 +64,12 @@ export default function FeaturesSection() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
           {FEATURES.map((f, i) => (
-            <div key={f.title} className="vx-card card-lift" style={{ overflow: 'hidden' }}>
+            <div
+              key={f.title}
+              ref={el => cardsRef.current[i] = el}
+              className="vx-card card-lift"
+              style={{ overflow: 'hidden' }}
+            >
               <div style={{ height: 120, backgroundImage: `url(${galleryImages[i]})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div style={{ padding: 22 }}>
                 <div className="mono" style={{ width: 42, height: 42, display: 'grid', placeItems: 'center', borderRadius: 14, background: '#182b25', border: '1px solid rgba(215,181,109,.22)', color: 'var(--gold-2)', fontWeight: 800, marginBottom: 18 }}>{f.icon}</div>

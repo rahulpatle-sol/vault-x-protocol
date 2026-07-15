@@ -4,13 +4,13 @@ import vaultxMark from 'assets/images/vaultx-mark.svg';
 const LINKS = {
   Platform: ['Presale', 'Marketplace', 'Staking', 'Swap'],
   Product: ['Gallery', 'Account', 'Transactions', 'Security Review'],
-  Company: ['About', 'Partners', 'Contact'],
+  Company: ['About', 'Compliance', 'Partners', 'Contact'],
 };
 
 export default function Footer() {
   const navigate = useNavigate();
   const go = (item) => {
-    const routes = { Presale:'/presale', Marketplace:'/gallery', Staking:'/stake', Swap:'/swap', Gallery:'/gallery', Account:'/account', Transactions:'/transactions', About:'/about', Contact:'/contact' };
+    const routes = { Presale:'/presale', Marketplace:'/gallery', Staking:'/stake', Swap:'/swap', Gallery:'/gallery', Account:'/account', Transactions:'/transactions', About:'/about', Compliance:'/compliance', Contact:'/contact' };
     if (routes[item]) navigate(routes[item]);
   };
 

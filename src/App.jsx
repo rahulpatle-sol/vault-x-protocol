@@ -12,6 +12,7 @@ import Presale from './containers/pre-sale';
 import Mint from './containers/mint';
 import Stake from './containers/stake';
 import Contact from './containers/contact';
+import Compliance from './containers/compliance';
 import Ramper from './components/Ramper';
 import ERC20Balance from './components/ERC20Balance';
 
@@ -45,6 +46,7 @@ const App = () => {
               <Route path="/mint" element={<Mint />} />
               <Route path="/stake" element={<Stake />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/compliance" element={<Compliance />} />
             </Routes>
           </main>
           <Footer />

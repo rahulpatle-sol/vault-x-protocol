@@ -19,7 +19,10 @@ export default defineConfig(({ mode }) => {
       cors: true,
       allowedHosts: true,
       hmr: {
-        clientPort: Number(env.VITE_HMR_CLIENT_PORT || 443),
+        protocol: 'ws',
+        host: undefined,
+        port: undefined,
+        clientPort: undefined,
       },
     },
 

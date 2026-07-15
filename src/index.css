@@ -158,6 +158,7 @@ img { max-width: 100%; display: block; }
 }
 @keyframes vxPing { to { transform: scale(1.8); opacity: 0; } }
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .glass-panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); backdrop-filter: none; }
 .card-lift { transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease; }

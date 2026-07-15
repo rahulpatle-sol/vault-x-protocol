@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import GalleryItems from '../../components/gallery/GalleryItems';
+import AssetDetailDrawer from '../../components/assets/AssetDetailDrawer';
 import { brandImages } from 'assets/remoteImages';
+import { motion } from 'framer-motion';
 
 const PageHero = ({ img, eyebrow, title, sub }) => (
   <Box sx={{ position:'relative', overflow:'hidden', pt:{ xs:12, md:16 }, pb:{ xs:6, md:10 }, borderBottom:'1px solid rgba(255,255,255,0.05)' }}>
@@ -19,6 +22,8 @@ const PageHero = ({ img, eyebrow, title, sub }) => (
 );
 
 export default function Gallery() {
+  const [drawerAsset, setDrawerAsset] = useState(null);
+
   return (
     <Box sx={{ minHeight:'100vh', background:'var(--bg)' }}>
       <PageHero
@@ -29,9 +34,14 @@ export default function Gallery() {
       />
       <Box sx={{ py:{ xs:6, md:10 } }}>
         <Container maxWidth="xl">
-          <GalleryItems />
+          <GalleryItems onSelectAsset={setDrawerAsset} />
         </Container>
       </Box>
+      <AssetDetailDrawer
+        asset={drawerAsset}
+        open={Boolean(drawerAsset)}
+        onClose={() => setDrawerAsset(null)}
+      />
     </Box>
   );
 }
