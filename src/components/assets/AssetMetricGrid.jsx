@@ -1,18 +1,25 @@
-import { useEffect, memo } from 'react';
-import { motion, useSpring, useTransform, useMotionValue } from 'framer-motion';
+import { useEffect, memo, useState } from 'react';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 import { HiTrendingUp, HiOfficeBuilding } from 'react-icons/hi';
 import { RiCoinsLine, RiKey2Line } from 'react-icons/ri';
 
 function AnimatedCounter({ value, suffix = '', decimals = 0 }) {
   const count = useMotionValue(0);
-  const rounded = useTransform(count, v => `${Number(v).toFixed(decimals)}${suffix}`);
+  const [display, setDisplay] = useState('0');
   const spring = useSpring(count, { stiffness: 80, damping: 18 });
+
+  useEffect(() => {
+    const unsub = spring.onChange((v) => {
+      setDisplay(`${Number(v).toFixed(decimals)}${suffix}`);
+    });
+    return unsub;
+  }, [spring, decimals, suffix]);
 
   useEffect(() => {
     spring.set(parseFloat(value));
   }, [value, spring]);
 
-  return <motion.span style={{ fontVariationSettings: "'wght' 800" }}>{rounded}</motion.span>;
+  return <span style={{ fontVariationSettings: "'wght' 800", fontFamily: 'Manrope, sans-serif' }}>{display}</span>;
 }
 
 function AnimatedProgressBar({ value }) {
