@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
+import { RiLink, RiClipboardLine, RiFileTextLine, RiTimerLine, RiCheckDoubleLine } from 'react-icons/ri';
+import { FiArrowRight } from 'react-icons/fi';
 
 const STEPS = [
   {
     step: '01',
     title: 'Connect Wallet',
     description: 'Link your browser wallet to verify your identity and begin the qualification process.',
-    icon: '🔗',
+    icon: RiLink,
     color: 'rgba(215,181,109,.12)',
     borderColor: 'rgba(215,181,109,.25)',
     accent: 'var(--gold-2)',
@@ -14,7 +16,7 @@ const STEPS = [
     step: '02',
     title: 'Request Access',
     description: 'Submit an access request indicating your investor profile and jurisdictional location.',
-    icon: '📋',
+    icon: RiClipboardLine,
     color: 'rgba(112,181,139,.12)',
     borderColor: 'rgba(112,181,139,.25)',
     accent: 'var(--green-2)',
@@ -23,7 +25,7 @@ const STEPS = [
     step: '03',
     title: 'Review Disclosures',
     description: 'Read and acknowledge all risk disclosures, asset memos, and legal terms before participating.',
-    icon: '📄',
+    icon: RiFileTextLine,
     color: 'rgba(215,181,109,.12)',
     borderColor: 'rgba(215,181,109,.25)',
     accent: 'var(--gold-2)',
@@ -32,7 +34,7 @@ const STEPS = [
     step: '04',
     title: 'Wait for Approval',
     description: 'Your eligibility will be reviewed against jurisdictional requirements and investor criteria.',
-    icon: '⏳',
+    icon: RiTimerLine,
     color: 'rgba(112,181,139,.12)',
     borderColor: 'rgba(112,181,139,.25)',
     accent: 'var(--green-2)',
@@ -41,7 +43,7 @@ const STEPS = [
     step: '05',
     title: 'Participate',
     description: 'Once approved, you can access investment opportunities and participate in asset allocations.',
-    icon: '✅',
+    icon: RiCheckDoubleLine,
     color: 'rgba(215,181,109,.12)',
     borderColor: 'rgba(215,181,109,.25)',
     accent: 'var(--gold)',
@@ -97,80 +99,83 @@ export default function InvestorAccessSteps() {
       >
         Five simple steps to begin participating in VaultX real-world asset opportunities.
       </motion.p>
-      {STEPS.map((step, i) => (
-        <motion.div
-          key={step.step}
-          variants={stepVariants}
-          whileHover={{
-            x: 8,
-            transition: { type: 'spring', stiffness: 200, damping: 14 },
-          }}
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 18,
-            padding: '20px 22px',
-            borderRadius: 20,
-            background: step.color,
-            border: `1px solid ${step.borderColor}`,
-            backdropFilter: 'blur(6px)',
-            cursor: 'default',
-            transition: 'background .2s ease',
-          }}
-        >
+      {STEPS.map((step, i) => {
+        const Icon = step.icon;
+        return (
           <motion.div
-            whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }}
-            transition={{ duration: 0.3 }}
+            key={step.step}
+            variants={stepVariants}
+            whileHover={{
+              x: 8,
+              transition: { type: 'spring', stiffness: 200, damping: 14 },
+            }}
             style={{
-              width: 48,
-              height: 48,
-              borderRadius: 16,
-              background: `linear-gradient(135deg, ${step.accent}22, ${step.accent}11)`,
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 18,
+              padding: '20px 22px',
+              borderRadius: 20,
+              background: step.color,
               border: `1px solid ${step.borderColor}`,
-              display: 'grid',
-              placeItems: 'center',
-              fontSize: 20,
-              flexShrink: 0,
+              backdropFilter: 'blur(6px)',
+              cursor: 'default',
+              transition: 'background .2s ease',
             }}
           >
-            {step.icon}
-          </motion.div>
-          <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-              <span className="mono" style={{ fontSize: 9, color: step.accent, letterSpacing: '.14em', fontWeight: 700 }}>{step.step}</span>
-              <div style={{ width: 24, height: 1, background: step.borderColor }} />
-              <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--text)' }}>{step.title}</span>
-            </div>
-            <p style={{ margin: 0, fontSize: 13, color: 'var(--muted)', lineHeight: 1.7 }}>
-              {step.description}
-            </p>
-          </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              background: 'rgba(255,255,255,.04)',
-              border: `1px solid ${step.borderColor}`,
-              display: 'grid',
-              placeItems: 'center',
-              fontSize: 12,
-              color: step.accent,
-              flexShrink: 0,
-            }}
-          >
-            <motion.span
-              animate={{ x: [0, 3, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+            <motion.div
+              whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 0.3 }}
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: 16,
+                background: `linear-gradient(135deg, ${step.accent}22, ${step.accent}11)`,
+                border: `1px solid ${step.borderColor}`,
+                display: 'grid',
+                placeItems: 'center',
+                fontSize: 20,
+                flexShrink: 0,
+              }}
             >
-              →
-            </motion.span>
+              <Icon size={20} color={step.accent} />
+            </motion.div>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+                <span className="mono" style={{ fontSize: 9, color: step.accent, letterSpacing: '.14em', fontWeight: 700 }}>{step.step}</span>
+                <div style={{ width: 24, height: 1, background: step.borderColor }} />
+                <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--text)' }}>{step.title}</span>
+              </div>
+              <p style={{ margin: 0, fontSize: 13, color: 'var(--muted)', lineHeight: 1.7 }}>
+                {step.description}
+              </p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,.04)',
+                border: `1px solid ${step.borderColor}`,
+                display: 'grid',
+                placeItems: 'center',
+                fontSize: 12,
+                color: step.accent,
+                flexShrink: 0,
+              }}
+            >
+              <motion.span
+                animate={{ x: [0, 3, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+              >
+                <FiArrowRight size={14} />
+              </motion.span>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      ))}
+        );
+      })}
     </motion.div>
   );
 }

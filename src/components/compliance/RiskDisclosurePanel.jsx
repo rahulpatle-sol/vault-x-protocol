@@ -1,40 +1,41 @@
 import { motion } from 'framer-motion';
+import { RiBarChartBoxLine, RiWaterFlashLine, RiScalesLine, RiShieldCheckLine, RiSettings3Line, RiCrosshairLine } from 'react-icons/ri';
 
 const RISKS = [
   {
     category: 'Market Risk',
     description: 'RWA token values may fluctuate based on underlying asset performance, market conditions, and investor demand. Past performance does not guarantee future results.',
-    icon: '📊',
+    icon: RiBarChartBoxLine,
     severity: 'high',
   },
   {
     category: 'Liquidity Risk',
     description: 'Secondary market liquidity for tokenized real estate may be limited. Investors should be prepared to hold positions until maturity or a secondary market develops.',
-    icon: '💧',
+    icon: RiWaterFlashLine,
     severity: 'high',
   },
   {
     category: 'Regulatory Risk',
     description: 'Changes in securities laws, tax treatment, or digital asset regulations may affect the legal status or operational viability of RWA tokenization structures.',
-    icon: '⚖️',
+    icon: RiScalesLine,
     severity: 'medium',
   },
   {
     category: 'Smart Contract Risk',
     description: 'While contracts are audited, no software is without risk. Exploits, bugs, or upgrade vulnerabilities could affect token functionality or asset representation.',
-    icon: '🔐',
+    icon: RiShieldCheckLine,
     severity: 'medium',
   },
   {
     category: 'Operational Risk',
     description: 'Property management, SPV administration, and custodial arrangements depend on third-party service providers. Operational failures may impact returns.',
-    icon: '⚙️',
+    icon: RiSettings3Line,
     severity: 'low',
   },
   {
     category: 'Concentration Risk',
     description: 'Portfolios may be concentrated in specific geographic regions, property types, or single assets, increasing exposure to localized market downturns.',
-    icon: '🎯',
+    icon: RiCrosshairLine,
     severity: 'low',
   },
 ];
@@ -90,6 +91,7 @@ export default function RiskDisclosurePanel() {
       </motion.p>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 14 }}>
         {RISKS.map((risk) => {
+          const Icon = risk.icon;
           const colors = severityColors[risk.severity];
           return (
             <motion.div
@@ -122,7 +124,7 @@ export default function RiskDisclosurePanel() {
                     flexShrink: 0,
                   }}
                 >
-                  {risk.icon}
+                  <Icon size={18} color={colors.text} />
                 </motion.div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>

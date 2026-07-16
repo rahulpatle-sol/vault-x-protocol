@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useWeb3React } from '@web3-react/core';
+import { FiLock } from 'react-icons/fi';
 
 const btnBase = {
   display: 'inline-flex',
@@ -78,7 +79,7 @@ export default function AssetActionPanel({ asset }) {
             gap: 10,
           }}
         >
-          <span style={{ fontSize: 16 }}>🔒</span>
+          <FiLock size={14} color="var(--red)" />
           <span className="mono" style={{ fontSize: 10, color: 'var(--red)', letterSpacing: '.06em' }}>
             Connect your wallet to access investment actions
           </span>

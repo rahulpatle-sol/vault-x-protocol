@@ -1,5 +1,7 @@
 import { useEffect, memo } from 'react';
 import { motion, useSpring, useTransform, useMotionValue } from 'framer-motion';
+import { HiTrendingUp, HiOfficeBuilding } from 'react-icons/hi';
+import { RiCoinsLine, RiKey2Line } from 'react-icons/ri';
 
 function AnimatedCounter({ value, suffix = '', decimals = 0 }) {
   const count = useMotionValue(0);
@@ -70,7 +72,7 @@ function StatCard({ label, value, suffix, decimals, icon }) {
         }}
       />
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-        {icon && <span style={{ fontSize: 18 }}>{icon}</span>}
+        {icon}
         <span className="mono" style={{ fontSize: 9, color: 'var(--dim)', letterSpacing: '.12em', textTransform: 'uppercase' }}>{label}</span>
       </div>
       <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em' }}>
@@ -93,12 +95,12 @@ function StatCard({ label, value, suffix, decimals, icon }) {
 const AssetMetricGrid = memo(function AssetMetricGrid({ apy, occupancy, funded, min }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-      <StatCard label="Target APY" value={apy.replace('%', '')} suffix="%" icon="📈" />
-      <StatCard label="Occupancy" value={occupancy ? occupancy.replace('%', '') : '94'} suffix="%" icon="🏢" />
-      <StatCard label="Funding Progress" value={funded.toString()} suffix="%" icon="💰" />
+      <StatCard label="Target APY" value={apy.replace('%', '')} suffix="%" icon={<HiTrendingUp size={18} color="var(--gold-2)" />} />
+      <StatCard label="Occupancy" value={occupancy ? occupancy.replace('%', '') : '94'} suffix="%" icon={<HiOfficeBuilding size={18} color="var(--green-2)" />} />
+      <StatCard label="Funding Progress" value={funded.toString()} suffix="%" icon={<RiCoinsLine size={18} color="var(--gold-2)" />} />
       <div style={{ padding: '18px 16px', borderRadius: 18, background: 'rgba(255,255,255,.04)', border: '1px solid rgba(215,181,109,.1)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-          <span style={{ fontSize: 18 }}>🔑</span>
+          <RiKey2Line size={18} color="var(--gold-2)" />
           <span className="mono" style={{ fontSize: 9, color: 'var(--dim)', letterSpacing: '.12em', textTransform: 'uppercase' }}>Min Participation</span>
         </div>
         <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--gold-2)', letterSpacing: '-.03em' }}>{min}</div>

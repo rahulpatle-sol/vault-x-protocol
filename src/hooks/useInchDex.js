@@ -100,7 +100,7 @@ const useInchDex = (chain) => {
         value: ethers.BigNumber.from(swapData.tx.value),
       });
       const receipt = await tx.wait();
-      alert('Swap complete ✅');
+      alert('Swap complete');
       return receipt;
     },
     [walletAddress, chainId],

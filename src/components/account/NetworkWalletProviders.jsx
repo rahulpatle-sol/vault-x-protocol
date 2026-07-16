@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { useWalletConnector } from './WalletConnector.jsx';
+import { useWalletConnector } from './WalletConnector';
 import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import { FiX, FiAlertCircle } from 'react-icons/fi';
+import { RiWallet3Fill, RiShieldCheckFill } from 'react-icons/ri';
 
 const WalletIcon = () => (
   <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,10 +54,10 @@ const NetworkWalletProviders = ({ walletProvidersDialogOpen, handleWalletProvide
       BackdropProps={{ style: { backgroundColor: 'rgba(4,10,9,.75)', backdropFilter: 'none' } }}
       PaperProps={{
         style: {
-          background: 'linear-gradient(180deg, #0D1B18, #081311)',
-          border: '1px solid rgba(215,181,109,.18)',
+          background: 'var(--surface)',
+          border: '1px solid var(--border-strong)',
           borderRadius: 22,
-          boxShadow: '0 32px 90px rgba(0,0,0,.62)',
+          boxShadow: 'var(--shadow-lg)',
           overflow: 'hidden',
           maxWidth: 430,
           width: '100%',
@@ -77,33 +78,51 @@ const NetworkWalletProviders = ({ walletProvidersDialogOpen, handleWalletProvide
               </div>
             </div>
           </div>
-          <div className="vx-copy" style={{ fontSize: 14, margin: 0 }}>
-            Connect with MetaMask, Rabby, Coinbase Wallet, or any injected EIP-1193 browser wallet. This version no longer blocks testnets or local development chains.
+          <div style={{ fontSize: 14, color: 'var(--muted)', margin: 0, lineHeight: 1.6 }}>
+            Connect with MetaMask, Rabby, Coinbase Wallet, or any injected EIP-1193 browser wallet.
           </div>
         </div>
         <IconButton onClick={handleWalletProvidersDialogToggle}
-          sx={{ color:'var(--muted)', border:'1px solid rgba(255,255,255,.08)', borderRadius:'10px', width:34, height:34, flexShrink:0,
-            '&:hover': { color:'var(--text)', borderColor:'rgba(215,181,109,.24)' } }}>
-          <CloseIcon sx={{ fontSize:16 }}/>
+          sx={{ color:'var(--dim)', border:'1px solid var(--border)', borderRadius:'10px', width:34, height:34, flexShrink:0,
+            '&:hover': { color:'var(--text)', borderColor:'rgba(215,181,109,0.24)' } }}>
+          <FiX size={16}/>
         </IconButton>
       </div>
 
       {displayError && (
-        <div style={{ margin:'0 28px 14px', padding:'12px 14px', borderRadius:14, background:'rgba(225,124,124,.08)', border:'1px solid rgba(225,124,124,.26)', fontSize:13, color:'#ffb0b0', lineHeight:1.5 }}>
-          {displayError}
+        <div style={{
+          margin: '0 28px 14px', padding: '12px 14px', borderRadius: 14,
+          background: 'var(--red-bg)', border: '1px solid rgba(225,124,124,0.26)',
+          fontSize: 13, color: 'var(--red)', lineHeight: 1.5,
+          display: 'flex', alignItems: 'flex-start', gap: 8,
+        }}>
+          <FiAlertCircle size={16} style={{ flexShrink: 0, marginTop: 2 }} />
+          <span>{displayError}</span>
         </div>
       )}
 
-      <div style={{ padding:'0 28px 28px' }}>
+      <div style={{ padding: '0 28px 28px' }}>
         <button
           onClick={handleConnect}
           disabled={connecting}
           className="vx-btn"
-          style={{ width:'100%', minHeight:52, opacity: connecting ? .65 : 1, cursor: connecting ? 'not-allowed' : 'pointer' }}
+          style={{
+            width: '100%', minHeight: 52,
+            opacity: connecting ? .65 : 1,
+            cursor: connecting ? 'not-allowed' : 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+          }}
         >
-          {connecting ? 'Connecting…' : 'Connect browser wallet'}
+          <RiWallet3Fill size={16} />
+          {connecting ? 'Connecting...' : 'Connect browser wallet'}
         </button>
-        <div className="mono" style={{ marginTop:14, textAlign:'center', fontSize:9, color:'var(--dim)', letterSpacing:'.08em', lineHeight:1.7 }}>
+        <div style={{
+          marginTop: 14, textAlign: 'center',
+          fontFamily: '"IBM Plex Mono", monospace',
+          fontSize: 9, color: 'var(--dim)', letterSpacing: '.08em', lineHeight: 1.7,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+        }}>
+          <RiShieldCheckFill size={11} style={{ color: 'var(--green)' }} />
           We never store private keys. Your wallet signs transactions directly.
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { RiCoinsLine } from 'react-icons/ri';
 import placeholderToken from 'assets/images/placeholder.svg';
 import { useMoralis } from 'react-moralis';
 import { useERC20Balance } from 'hooks/useERC20Balance';
@@ -57,7 +58,7 @@ function ERC20Balance(props) {
 
   return (
     <Container>
-      <h1 style={styles.title}>💰Token Balances</h1>
+      <h1 style={styles.title}><RiCoinsLine size={28} style={{ marginRight: 8, verticalAlign: 'middle' }} />Token Balances</h1>
       <SimpleSkeleton loading={!assets}>
         <SimpleTable
           dataSource={assets}

@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { RiWalletLine } from 'react-icons/ri';
 import WalletProviders from './NetworkWalletProviders';
 
 export default function Unauthenticated() {
@@ -9,8 +10,19 @@ export default function Unauthenticated() {
         type="button"
         onClick={() => setOpen(true)}
         className="vx-btn"
-        style={{ minHeight: 40, padding: '0 16px', fontSize: 11, boxShadow: '0 10px 26px rgba(215,181,109,.14)' }}
+        style={{
+          minHeight: 40,
+          padding: '0 20px',
+          fontSize: 11,
+          fontWeight: 700,
+          letterSpacing: '0.04em',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          fontFamily: '"Plus Jakarta Sans", sans-serif',
+        }}
       >
+        <RiWalletLine size={15} />
         Connect Wallet
       </button>
       <WalletProviders walletProvidersDialogOpen={open} handleWalletProvidersDialogToggle={() => setOpen(false)} />
