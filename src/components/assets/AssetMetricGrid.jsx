@@ -94,11 +94,17 @@ function StatCard({ label, value, suffix, decimals, icon }) {
 
 const AssetMetricGrid = memo(function AssetMetricGrid({ apy, occupancy, funded, min }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-      <StatCard label="Target APY" value={apy.replace('%', '')} suffix="%" icon={<HiTrendingUp size={18} color="var(--gold-2)" />} />
-      <StatCard label="Occupancy" value={occupancy ? occupancy.replace('%', '') : '94'} suffix="%" icon={<HiOfficeBuilding size={18} color="var(--green-2)" />} />
-      <StatCard label="Funding Progress" value={funded.toString()} suffix="%" icon={<RiCoinsLine size={18} color="var(--gold-2)" />} />
-      <div style={{ padding: '18px 16px', borderRadius: 18, background: 'rgba(255,255,255,.04)', border: '1px solid rgba(215,181,109,.1)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <div className="vx-metric-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+      <div data-tilt style={{ transformStyle: 'preserve-3d' }}>
+        <StatCard label="Target APY" value={apy.replace('%', '')} suffix="%" icon={<HiTrendingUp size={18} color="var(--gold-2)" />} />
+      </div>
+      <div data-tilt style={{ transformStyle: 'preserve-3d' }}>
+        <StatCard label="Occupancy" value={occupancy ? occupancy.replace('%', '') : '94'} suffix="%" icon={<HiOfficeBuilding size={18} color="var(--green-2)" />} />
+      </div>
+      <div data-tilt style={{ transformStyle: 'preserve-3d' }}>
+        <StatCard label="Funding Progress" value={funded.toString()} suffix="%" icon={<RiCoinsLine size={18} color="var(--gold-2)" />} />
+      </div>
+      <div data-tilt style={{ padding: '18px 16px', borderRadius: 18, background: 'rgba(255,255,255,.04)', border: '1px solid rgba(215,181,109,.1)', display: 'flex', flexDirection: 'column', justifyContent: 'center', transformStyle: 'preserve-3d' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
           <RiKey2Line size={18} color="var(--gold-2)" />
           <span className="mono" style={{ fontSize: 9, color: 'var(--dim)', letterSpacing: '.12em', textTransform: 'uppercase' }}>Min Participation</span>

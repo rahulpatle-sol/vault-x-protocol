@@ -67,7 +67,7 @@ export default function FeaturesSection() {
             <div
               key={f.title}
               ref={el => cardsRef.current[i] = el}
-              className="vx-card card-lift"
+              className="vx-card card-lift" data-tilt
               style={{ overflow: 'hidden' }}
             >
               <div style={{ height: 120, backgroundImage: `url(${galleryImages[i]})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />

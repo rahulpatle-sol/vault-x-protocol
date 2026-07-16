@@ -84,6 +84,7 @@ export default function GalleryItems({ onSelectAsset }) {
             >
               <Box
                 className="vx-card-strong"
+                data-tilt
                 sx={{
                   overflow:'hidden', height:'100%',
                   transition: 'border-color .3s ease, box-shadow .3s ease',

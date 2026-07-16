@@ -82,7 +82,7 @@ export default function HowToSection() {
             <div
               key={s.n}
               ref={el => stepsRef.current[i] = el}
-              className="vx-card card-lift"
+              className="vx-card card-lift" data-tilt
               style={{ position: 'relative', overflow: 'hidden' }}
             >
               <div style={{ height: 110, backgroundImage: `url(${galleryImages[(i + 3) % galleryImages.length]})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { useWeb3React } from '@web3-react/core';
 import { AnimatePresence, motion } from 'framer-motion';
 import ScrollProvider from './providers/ScrollProvider';
+import use3DTilt from './hooks/use3DTilt';
 
 import Home from './containers/home';
 import About from './containers/about';
@@ -78,6 +79,7 @@ function AppRoutes() {
 
 const App = () => {
   const { library, account } = useWeb3React();
+  use3DTilt();
 
   useEffect(() => {
     if (library) localStorage.setItem('connected', true);

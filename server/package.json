@@ -1,0 +1,14 @@
+{
+  "name": "vaultx-server",
+  "version": "1.0.0",
+  "description": "VaultX Protocol - Express backend for status and document metadata APIs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.2"
+  }
+}
