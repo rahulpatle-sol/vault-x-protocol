@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { FiArrowLeft } from 'react-icons/fi';
 
 export default function NotFound() {
   const sectionRef = useRef(null);
@@ -134,7 +135,7 @@ export default function NotFound() {
 
         <div ref={btnRef} style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button className="vx-btn" onClick={() => navigate('/')}>
-            ← Back Home
+            <FiArrowLeft size={14} style={{ marginRight: 6 }} /> Back Home
           </button>
           <button className="vx-btn secondary" onClick={() => navigate('/gallery')}>
             Browse Assets

@@ -11,7 +11,6 @@ import Link from '@mui/material/Link';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import { FiCopy, FiLogOut, FiX, FiCheck } from 'react-icons/fi';
 import { useState, useCallback } from 'react';
-import { useTheme } from '../../providers/ThemeProvider';
 import { getEllipsisTxt } from '../../helpers/formatters.js';
 import { getExplorer } from '../../helpers/networks.js';
 import { useWalletConnector } from './WalletConnector.jsx';

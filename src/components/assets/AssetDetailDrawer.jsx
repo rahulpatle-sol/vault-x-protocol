@@ -1,5 +1,6 @@
 import { useEffect, useCallback, useMemo, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FiX } from 'react-icons/fi';
 import AssetMetricGrid from './AssetMetricGrid';
 import AssetRiskSummary from './AssetRiskSummary';
 import AssetActionPanel from './AssetActionPanel';
@@ -178,7 +179,7 @@ export default function AssetDetailDrawer({ asset, open, onClose }) {
                   backdropFilter: 'blur(8px)',
                 }}
               >
-                ✕
+                <FiX size={18} />
               </motion.button>
               <div style={{ position: 'absolute', left: 22, bottom: 22, right: 22 }}>
                 <motion.div

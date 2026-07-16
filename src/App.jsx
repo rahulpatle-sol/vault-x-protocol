@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useWeb3React } from '@web3-react/core';
 import { AnimatePresence, motion } from 'framer-motion';
+import ScrollProvider from './providers/ScrollProvider';
 
 import Home from './containers/home';
 import About from './containers/about';
@@ -85,13 +86,15 @@ const App = () => {
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <CustomCursor />
-      <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <MainNavigation />
-        <main style={{ flex: 1 }}>
-          <AppRoutes />
-        </main>
-        <Footer />
-      </div>
+      <ScrollProvider>
+        <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <MainNavigation />
+          <main style={{ flex: 1 }}>
+            <AppRoutes />
+          </main>
+          <Footer />
+        </div>
+      </ScrollProvider>
     </BrowserRouter>
   );
 };

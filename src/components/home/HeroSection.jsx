@@ -2,7 +2,6 @@ import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from '@studio-freight/lenis';
 import { brandImages, showcaseAssets } from 'assets/remoteImages';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -28,26 +27,6 @@ export default function HeroSection() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. Initialize Lenis Smooth Scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Sync ScrollTrigger with Lenis
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
-
     const ctx = gsap.context(() => {
       // 2. Text Entrance Reveal
       const chars = titleRef.current.querySelectorAll('.hero-char');
@@ -100,10 +79,7 @@ export default function HeroSection() {
 
     }, sectionRef);
 
-    return () => {
-      ctx.revert();
-      lenis.destroy();
-    };
+    return () => { ctx.revert(); };
   }, []);
 
   const titleText = 'Tokenized Property Infrastructure for Serious Capital Markets';

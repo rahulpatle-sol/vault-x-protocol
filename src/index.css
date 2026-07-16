@@ -67,17 +67,20 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; scrollbar-gutter: stable; }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   background:
-    radial-gradient(ellipse at 10% 0%, rgba(215,181,109,0.1), transparent 40%),
-    radial-gradient(ellipse at 90% 15%, rgba(112,181,139,0.08), transparent 35%),
-    radial-gradient(ellipse at 50% 100%, rgba(215,181,109,0.04), transparent 50%),
-    linear-gradient(165deg, #06100d 0%, #0b1714 35%, #081311 70%, #0a1814 100%);
+    radial-gradient(ellipse at 10% 0%, rgba(215,181,109,0.15), transparent 45%),
+    radial-gradient(ellipse at 90% 15%, rgba(112,181,139,0.12), transparent 40%),
+    radial-gradient(ellipse at 50% 100%, rgba(215,181,109,0.06), transparent 50%),
+    linear-gradient(165deg, #050f0c 0%, #091511 35%, #07120f 70%, #091814 100%);
   color: var(--text);
   font-family: 'Plus Jakarta Sans', Manrope, system-ui, -apple-system, sans-serif;
 }
@@ -135,21 +138,23 @@ img { max-width: 100%; display: block; }
 .vx-copy { color: var(--muted); line-height: 1.8; font-size: 15px; }
 
 .vx-card, .glass-card {
-  background: linear-gradient(180deg, rgba(18,35,31,0.8), rgba(13,27,24,0.9));
+  background: linear-gradient(180deg, rgba(18,35,31,0.75), rgba(13,27,24,0.85));
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  backdrop-filter: none;
-  transition: border-color 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth), background 0.3s var(--ease-smooth);
 }
 
 .vx-card-strong {
-  background: linear-gradient(180deg, rgba(20,38,32,0.9), rgba(13,26,23,0.95));
+  background: linear-gradient(180deg, rgba(20,38,32,0.85), rgba(13,26,23,0.9));
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
-  backdrop-filter: none;
-  transition: border-color 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth), background 0.3s var(--ease-smooth);
 }
 
 .vx-panel {
